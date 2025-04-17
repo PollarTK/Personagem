@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body id="home">
+   
+    <div class="botoes">
+        <a href="/criar_personagem">Criar Novo Personagem</a>
+    </div>
+    
+      <!-- Seção de "Minhas Criações" -->
+      <section class="my-creations">
+        <h2>Minhas Criações</h2>
+        <div class="cards-container">
+          <!-- Card de projeto musical -->
+          {% for personagem in personagens %}
+          <div class="botoes">
+            <a href="/personagens/editar/{{ personagem[0] }}"> Editar</a>
+          </div>
+
+          <div class="card">
+
+            {% if personagem[3] is not none and personagem[3] != '' %}
+                <img src="{{ personagem[3] }}"class="cover" alt="Imagem">
+            {% else %}
+                <img src="{{ url_for('static', filename='img/capa2.jpeg') }}" class="cover" alt="Imagem">
+            {% endif %}
+            <button type="submit" class="deletar" onclick="window.location.href='/personagens/excluir/{{ personagem[0] }}'">🗑️</button>
+
+            <div class="card-content">
+
+              <p>Titulo: </p> 
+              <p>Artista: </p>
+              <p>Letra: </p>
+              <p>Status: </p>
+            </div>
+
+          </div>
+          {% endfor %}
+          
+        </div>
+      </section>
+      <div class="excluir_usuario"> <input type="button" onclick="window.location.href='/excluir_usuario'" value="Excluir usuário">
+        <input type="button" onclick="window.location.href='/loggout'" value="loggout">
+          
+</body>
+
+</html>
