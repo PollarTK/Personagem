@@ -27,13 +27,13 @@
             {% if personagem[3] is not none and personagem[3] != '' %}
                 <img src="{{ personagem[3] }}"class="cover" alt="Imagem">
             {% else %}
-                <img src="{{ url_for('static', filename='img/capa2.jpeg') }}" class="cover" alt="Imagem">
+                <img src="{{ url_for('static', filename='img/rosto3.png') }}" class="cover" alt="Imagem">
             {% endif %}
             <button type="submit" class="deletar" onclick="window.location.href='/personagens/excluir/{{ personagem[0] }}'">🗑️</button>
 
             <div class="card-content">
 
-              <p>Titulo: </p> 
+              <p>nome:{{ personagem[1] }} </p> 
               <p>Artista: </p>
               <p>Letra: </p>
               <p>Status: </p>

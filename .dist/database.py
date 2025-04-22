@@ -11,13 +11,7 @@ def criar_tabelas():
     cursor.execute('''create table if not exists usuarios
                    (email text primary key, nome text, senha text)''' )
 
-    cursor.execute('''create table if not exists personagens (id integer primary key, nome text, genero integer,variacao integer, email_usuario text,
-             FOREIGN KEY(email_usuario) REFERENCES usuarios(email))''')
-    
-    cursor.execute('''create table if not exists olhos (id integer primary key, cor integer, email_usuario text,
-             FOREIGN KEY(email_usuario) REFERENCES usuarios(email))''')
-    
-    cursor.execute('''create table if not exists cabelos (id integer primary key, cor integer, email_usuario text,
+    cursor.execute('''create table if not exists personagens (id integer primary key, nome text, variacao integer, email_usuario text,
              FOREIGN KEY(email_usuario) REFERENCES usuarios(email))''')
     conexao.commit()
 
@@ -61,12 +55,12 @@ def fazer_login(formulario):
             return False
         
 
-def criar_personagem(nome,genero,variacao,email):
+def criar_personagem(nome,variacao,email):
     conexao = conectar_banco()
     cursor = conexao.cursor()
-    cursor.execute(''' INSERT INTO personagens (nome, genero,variacao, email_usuario)
+    cursor.execute(''' INSERT INTO personagens (nome,variacao, email_usuario)
                    VALUES (?,?,?)''', 
-                   (nome,genero,variacao, email))
+                   (nome,variacao, email))
     conexao.commit()
     return True
 
@@ -74,7 +68,7 @@ def criar_personagem(nome,genero,variacao,email):
 def buscar_personagens(email):
     conexao = conectar_banco()
     cursor = conexao.cursor()
-    cursor.execute('''SELECT id, nome, genero, variacao
+    cursor.execute('''SELECT id, nome, variacao
                    FROM personagens WHERE email_usuario=?''', 
                    (email,))
     conexao.commit()
