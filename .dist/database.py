@@ -64,6 +64,16 @@ def criar_personagem(nome,variacao,email):
     conexao.commit()
     return True
 
+
+def editar_personagem(novo_nome,nova_variacao, id):
+    # Conecta com o banco
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    #Executa o comando
+    cursor.execute('''UPDATE personagens SET nome=?, variacao=? WHERE id=?''', (novo_nome,nova_variacao, id))
+    conexao.commit()
+    return True
+
         
 def buscar_personagens(email):
     conexao = conectar_banco()
@@ -74,6 +84,36 @@ def buscar_personagens(email):
     conexao.commit()
     personagens = cursor.fetchall() # Busca todos os resultados do select e guarda em "personagens"
     return personagens
+
+
+def buscar_conteudo_personagem(id):
+    # Conecta com o banco
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    #Executa a query do conteúdo
+    cursor.execute('''SELECT nome,variacao FROM personagens WHERE id=?''', (id,))
+    conexao.commit()
+    conteudo = cursor.fetchone()
+    #Retorna o conteudo
+    return(conteudo)
+
+
+def excluir_personagem(id, email):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute('''SELECT email_usuario FROM personagens WHERE id=?''', (id,))
+    conexao.commit()
+    email_banco = cursor.fetchone()
+    print(email, email_banco)
+    if (email_banco[0] !=email):
+        
+        return False
+    else:
+        cursor.execute(''' DELETE FROM personagens WHERE id=?''', (id,))
+        conexao.commit()
+        cursor.close()
+        return True
+
 
 def excluir_usuario(email):
     conexao = conectar_banco()

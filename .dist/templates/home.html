@@ -23,24 +23,32 @@
           </div>
 
           <div class="card">
-
-            {% if personagem[3] is not none and personagem[3] != '' %}
-                <img src="{{ personagem[3] }}"class="cover" alt="Imagem">
-            {% else %}
-                <img src="{{ url_for('static', filename='img/rosto3.png') }}" class="cover" alt="Imagem">
+            {% if personagem[2] == 1 %}
+              <img src="{{ url_for('static', filename='img/rosto1.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 2 %}
+              <img src="{{ url_for('static', filename='img/rosto2.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 3 %}
+              <img src="{{ url_for('static', filename='img/rosto3.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 4 %}
+              <img src="{{ url_for('static', filename='img/rosto4.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 5 %}
+              <img src="{{ url_for('static', filename='img/rosto5.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 6 %}
+              <img src="{{ url_for('static', filename='img/rosto6.png') }}" class="cover" alt="Imagem">
+            {% elif personagem[2] == 7 %}
+              <img src="{{ url_for('static', filename='img/rosto7.png') }}" class="cover" alt="Imagem">
             {% endif %}
+            
+
             <button type="submit" class="deletar" onclick="window.location.href='/personagens/excluir/{{ personagem[0] }}'">🗑️</button>
 
             <div class="card-content">
-
-              <p>nome:{{ personagem[1] }} </p> 
-              <p>Artista: </p>
-              <p>Letra: </p>
-              <p>Status: </p>
+              <p>Nome: {{personagem[1]}}</p>
+             
             </div>
 
           </div>
-          {% endfor %}
+          {% endfor  %}
           
         </div>
       </section>

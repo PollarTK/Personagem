@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <div class="botoes">
+        <form id="editar" action="/personagens/editar/{{ id }}" method="post">
+
+        <div id="carouselExampleFade" class="carousel">
+            <input value="{{personagem[0]}}" type="text" name="nome" placeholder="nome" required>
+
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/static/img/rosto1.png" id="1" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto2.png" id="2" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto3.png" id="3" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto4.png" id="4" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto5.png" id="5" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto6.png" id="6" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/static/img/rosto7.png" id="7" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <br><br>
+    </div>
+    <div class="botoes">
+        <input type="hidden" id="variacao" name="variacao" >
+        <button type="submit" id="salvar">Salvar</button>
+
+    </div>
+</form>
+<script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

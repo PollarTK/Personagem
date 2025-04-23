@@ -15,7 +15,7 @@ def home():
     if 'usuario' not in session:
         return redirect(url_for('login'))
     lista_personagens = database.buscar_personagens(session['usuario'])
-    return render_template('home.html', personagem=lista_personagens)
+    return render_template('home.html', personagens=lista_personagens)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -53,6 +53,32 @@ def criar_personagem():
             pass
     else:
         return render_template('criar.html')
+    
+    
+@app.route('/personagens/editar/<int:id>', methods=["GET", "POST"])
+def editar_personagem(id):
+    # pega o e-mail da sessão para verificar se é o dono da tarefa
+    email = session['usuario']
+    if (request.method == "GET"):
+        conteudo_personagem = database.buscar_conteudo_personagem(id)
+        return render_template('editar.html', personagem=conteudo_personagem, id=id)
+    if (request.method == "POST"):
+        form = request.form
+        novo_nome = form['nome']
+        nova_variacao = form['variacao']
+        database.editar_personagem(novo_nome,nova_variacao, id)
+        return redirect(url_for('home'))
+    
+    
+@app.route('/personagens/excluir/<int:id>', methods=["GET"])
+def excluir_personagem(id):
+
+    email = session['usuario']
+
+    if database.excluir_personagem(id, email):
+        return redirect(url_for('home'))
+    else:
+        return "Ocorreu um erro ao excluir a personagem!"
 
 
 @app.route('/excluir_usuario')
