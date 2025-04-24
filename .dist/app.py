@@ -92,7 +92,7 @@ def excluir_usuario():
     
 @app.route('/loggout')
 def loggout():
-    session.pop
+    session.pop('usuario')
     return redirect(url_for('login'))
     
     
